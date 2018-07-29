@@ -12,14 +12,13 @@
     "main-module": "Index"
     },
     {
-    "backend": "native",
-    "main-module": "Index"
+      "backend": "native",
+      "main-module": "Index"
     }, 
-    /*
     {
-      "backend": "byte",
-      "main-module": "Main"
-    } */
+      "backend": "bytecode",
+      "main-module": "Index"
+    }
   ],
   "refmt": 3,
 }

@@ -7,7 +7,7 @@ type state = {
   image: imageT,
   xOffset: float,
   birdY: float,
-  velocity: float,
+  acceleration: float,
   player,
 };
 
@@ -17,7 +17,7 @@ module Math = {
        -freq: number of oscillations that occur each second of time
        -offset: where in its cycle the oscillation is at
      */
-  let sineWave = (~amplitude=2., ~freq=10., ~offset, ()) =>
+  let sineWave = (~amplitude=2., ~freq=10., ~offset) =>
     amplitude *. sin(freq *. offset);
 };
 
@@ -114,6 +114,8 @@ module Images = {
   };
 };
 
+let hitsFloor = birdY => false;
+
 let setup = env => {
   Env.size(~width=400, ~height=640, env);
 
@@ -121,24 +123,24 @@ let setup = env => {
     image: Draw.loadImage(~filename="assets/flappy.png", ~isPixel=true, env),
     xOffset: 0.,
     birdY: 200.,
-    velocity: 0.,
+    acceleration: 0.,
     player: Waiting,
   };
 };
 
-let nextXOffset = (xOffset, deltaTime) =>
+let nextXOffset = (xOffset, env) => {
+  /* the time elapsed between two frame updates */
+  let deltaTime = Env.deltaTime(env);
   xOffset +. Physics.speed *. deltaTime;
+};
 
 let draw = (state, env) => {
   Images.drawBackground(~image=state.image, env);
   Images.drawBird(~x=180., ~y=state.birdY, ~image=state.image, env);
   Images.drawGround(~xOffset=state.xOffset, ~image=state.image, env);
 
-  /* the time elapsed between two frame updates */
-  let deltaTime = Env.deltaTime(env);
-
   switch (state.player) {
-  | Waiting => {...state, xOffset: nextXOffset(state.xOffset, deltaTime)}
+  | Waiting => {...state, xOffset: nextXOffset(state.xOffset, env)}
   };
 };
 

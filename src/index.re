@@ -128,19 +128,19 @@ let setup = env => {
   };
 };
 
-let nextXOffset = (xOffset, env) => {
-  /* the time elapsed between two frame updates */
-  let deltaTime = Env.deltaTime(env);
+let nextXOffset = (xOffset, deltaTime) =>
   xOffset +. Physics.speed *. deltaTime;
-};
 
 let draw = (state, env) => {
   Images.drawBackground(~image=state.image, env);
   Images.drawBird(~x=180., ~y=state.birdY, ~image=state.image, env);
   Images.drawGround(~xOffset=state.xOffset, ~image=state.image, env);
 
+  /* the time elapsed between two frame updates */
+  let deltaTime = Env.deltaTime(env);
+
   switch (state.player) {
-  | Waiting => {...state, xOffset: nextXOffset(state.xOffset, env)}
+  | Waiting => {...state, xOffset: nextXOffset(state.xOffset, deltaTime)}
   };
 };
 

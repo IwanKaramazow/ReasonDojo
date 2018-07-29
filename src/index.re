@@ -17,14 +17,14 @@ module Math = {
        -freq: number of oscillations that occur each second of time
        -offset: where in its cycle the oscillation is at
      */
-  let sineWave = (~amplitude=2., ~freq=10., ~offset) =>
+  let sineWave = (~amplitude=2., ~freq=10., ~offset, ()) =>
     amplitude *. sin(freq *. offset);
 };
 
 module Physics = {
   let speed = 150.;
   let gravity = 16.66;
-  let jumpForce = (-500.);
+  let jumpAcceleration = (-500.);
 };
 
 module Images = {

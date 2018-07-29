@@ -65,7 +65,7 @@ Now that we know the game started (a space has been pressed), it's time to make 
 
 * Update the bird's `y`-axis position on every draw (when the user is playing) by incrementing with the `state.acceleration *. deltaTime`
 * Gravity is a thing in the real world. Increment the `acceleration ` on every draw with the `gravity` from the `Physics` module.
-* Whenever the user presses space, the bird needs to fly higher and higher. If a space is pressed, the `acceleration` is equal to the force contained by `jumpForce`  in the `Physics` module.
+* Whenever the user presses space, the bird needs to fly higher and higher. If a space is pressed, the `acceleration` is equal to the force contained by `jumpAcceleration`  in the `Physics` module.
 
 ### 5. Ground zero
 

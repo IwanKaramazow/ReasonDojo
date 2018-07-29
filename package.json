@@ -1,10 +1,10 @@
 {
-  "name": "reprocessing-example",
+  "name": "reason-dojo-reprocessing",
   "scripts": {
     "start": "./lib/bs/bytecode/indexhot.byte",
     "start:native": "./lib/bs/native/index.native",
     "build": "bsb -make-world",
-    "build:web": "bsb -make-world -backend js",
+    "build:web": "bsb -make-world -backend js && webpack lib/js/src/index.js --mode development -o app.js",
     "build:native": "bsb -make-world -backend native",
     "clean": "bsb -clean-world"
   },
@@ -12,6 +12,8 @@
     "Reprocessing": "schmavery/reprocessing"
   },
   "devDependencies": {
-    "bs-platform": "bsansouci/bsb-native#2.1.1"
+    "bs-platform": "bsansouci/bsb-native#3.2.0",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0"
   }
 }

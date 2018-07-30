@@ -139,9 +139,9 @@ let generatePipe = x => {
 };
 
 let initializePipes = () => [
-  generatePipe(0.),
   generatePipe(200.),
   generatePipe(400.),
+  generatePipe(600.),
 ];
 
 let updatePipes = (pipes, offset) =>

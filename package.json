@@ -6,6 +6,9 @@
     "build": "bsb -make-world",
     "build:web": "bsb -make-world -backend js && webpack lib/js/src/index.js --mode development -o app.js",
     "build:native": "bsb -make-world -backend native",
+    "build:bytecode": "bsb -make-world -backend bytecode",
+    "start:bytecode": "./lib/bs/bytecode/Index.byte",
+
     "clean": "bsb -clean-world"
   },
   "dependencies": {

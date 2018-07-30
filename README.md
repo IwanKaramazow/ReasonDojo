@@ -3,6 +3,12 @@ Reason Dojo - Reprocessing - August 2018 - Ghent
 
 No one ever learned to ride a bicycle, while watching other people bike.
 
+## Need help?
+
+1) Don't be afraid to ask help from a mentor at the Dojo
+2) Join https://discord.gg/V7mUGq, look for the #reason-dojo channel
+3) Tweet at https://twitter.com/_iwan_refmt
+
 ## Requirements
 
 Make sure you have [node](https://nodejs.org/en/) installed.
@@ -18,7 +24,9 @@ yarn
 ```
 
 ## Docs
+
 [Reprocessing](https://schmavery.github.io/reprocessing/)
+
 [Reason](https://reasonml.github.io/docs/en/quickstart-javascript.html)
 
 ## Dojo
@@ -38,7 +46,7 @@ Reprocessing is able to live reload code while developing, opening up all possib
 * Open `index.re` and modify `speed` in the `Physics` module.
 * Experiment with different speeds
 
-### 2. Make the bird come alive
+### 2. Birth of the bird
 
 The bird seems to hang frozen in the air. Let's bring him alive.
 The image of the bird gets drawn by the following code:
@@ -46,12 +54,12 @@ The image of the bird gets drawn by the following code:
 Images.drawBird(~x=180., ~y=state.birdY, ~image=state.image, env);
 ```
 * Update the relevant part of the state to give the bird a different position on the `y`-axis. For example give it a hard-coded position of `150.`
-* Once you found the part of the state influencing the vertical position of the bird, increment the position on the `y`-axis on every draw with the `Math.sineWave` function. Hint: part of the named arguments contain default values in the function definition. If you omit them when calling the function the default values are used. You can use the `xOffset` value in the state as offset.
+* Increment the bird position (`y`-axis) on every draw with the `Math.sineWave` function. Hint: part of the named arguments contain default values in the function definition. If you omit them when calling the function the default values are used. You can use the `xOffset` value in the state as `offset`. Don't forget to pass a `()` (unit) as last argument to finish the function application.
 
 ### 3. Let's play
 
 The player seems to be constantly waiting:
-```
+```reason
 type player =
   | Waiting;
 ```
@@ -77,9 +85,9 @@ Amazing, the bird is able to fly through the air whenever the space-key is press
 * Make sure that the bird stays dead on the ground, whenever it hit the ground. (A bird falling through the earth violates certain laws of physics).
 * If the user presses `space` when his bird is dead, reset the game to the `Waiting` state.
 
-### 6. Recalibrating
+### 6. Recalibrating the vision
 
-Great, you wrote safe, approachable code, that runs seamlessly everywhere as fast as it possibly can in each possible environment. The code you just wrote doesn't care about where it runs, you can use it in old browsers, new browsers, native apps, compiled bytecode - anywhere. (The main point being that the backend is treated as an implementation detail.
+Great, you wrote safe, approachable code, that runs seamlessly everywhere as fast as it possibly can in each possible environment. The code you just wrote doesn't care about where it runs, you can use it in old browsers, new browsers, native apps, compiled bytecode - anywhere. (The main point being that the backend is treated as an implementation detail.)
 
 1. Compile your game to a native app and play it
 ```
@@ -88,18 +96,35 @@ npm run build:native
 npm run start:native
 ```
 
-2. Compile your game to bytecode and play it (you've been developing in bytecode)
+2. Compile your game to bytecode and play it
 ```
-npm run build
+npm run build:bytecode
 # play the game
-npm run start
+npm run start:bytecode
 ```
 
 3. Compile your game to javascript and play it
 ```
 npm run build:web
-open `index.html` in a browser (e.g. safari, firefox...)
+open `index.html` in a browser, e.g. safari, firefox... (there's a Reprocessing bug in Chrome atm, will be fixed)
 ```
+
+### 7. Beware of the pipes
+
+* When the user is playing, use the `updatePipes` function to update the `pipes` state on every draw
+* Uncomment following part of the code in the `draw`  function:
+```reason
+let crash = birdHitsPipes(state.birdY, state.xOffset, state.pipes);
+```
+* The `crash` boolean indicates whether a bird hit a pipe. When there's a crash:
+  - `state.player` should transition to the same state as when the birth hit the ground
+  - the pipes should stop moving, e.g. no need to update them anymore
+
+
+
+
+
+
 
 
 

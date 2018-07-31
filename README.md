@@ -93,27 +93,24 @@ To do this, we want to increment the bird's Y-position with the result of our `M
 
 **TIP:** Don't be afraid to ask a mentor for help. If you've never worked with named or default arguments before, you'll definitely have a lot of questions.
 
-## 3. Let's play
----
-**CONCEPT:** Take a quick look at the documentation about [Variants and Constructors](https://reasonml.github.io/docs/en/variant). What will the result of the message function be in the example below?
+#### 3. Let's play
+* **CONCEPT:** Take a quick look at the documentation about [Variants and Constructors](https://reasonml.github.io/docs/en/variant). What will the result of the message function be in the example below?
 
-  ```reason
-  type myFirstVariant =
-  | Yes
-  | PrettyMuch
-  | No;
+    ```reason
+    type myFirstVariant =
+    | Yes
+    | PrettyMuch
+    | No;
 
-let doYouUnderstandIt = Yes;
+  let doYouUnderstandIt = Yes;
 
-let message =
-  switch (doYouUnderstandIt) {
-  | No => "No worries. Ask a mentor for help!"
-  | Yes => "Great! Aren't Variants awesome?"
-  | PrettyMuch => "Nice! Almost there!"
-  };
-
-  ```
----
+  let message =
+    switch (doYouUnderstandIt) {
+    | No => "No worries. Ask a mentor for help!"
+    | Yes => "Great! Aren't Variants awesome?"
+    | PrettyMuch => "Nice! Almost there!"
+    };
+    ```
 Having a bird cruising on the wind is great but it's time to get some interaction going. When you press Space now, nothing is happening. And if you take a look at the player Variant, it's not difficult to see why. There is just one constructor and it indicates a waiting state.
 
 ```reason

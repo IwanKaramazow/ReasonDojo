@@ -67,7 +67,7 @@ The image of the bird gets drawn by the following code:
 Images.drawBird(~x=180., ~y=state.birdY, ~image=state.image, env);
 ```
 
-* **STEP:** Update the relevant part of the state in `draw` to give the bird a different position on the `y`-axis. For example give it a hard-coded position of `150.`
+* Update the relevant part of the state in `draw` to give the bird a different position on the `y`-axis. For example give it a hard-coded position of `150.`
 
 * **CONCEPT:** Take a look at the example below. Can you guess what `~` does for arguments?
 
@@ -93,20 +93,28 @@ To do this, we want to increment the bird's Y-position with the result of our `M
 
 **TIP:** Don't be afraid to ask a mentor for help. If you've never worked with named or default arguments before, you'll definitely have a lot of questions.
 
-### 3. Let's play
+## 3. Let's play
 ---
-**REASON CONCEPT:** Take a quick look at the documentation about [Variants and Constructors](https://reasonml.github.io/docs/en/variant)
+**CONCEPT:** Take a quick look at the documentation about [Variants and Constructors](https://reasonml.github.io/docs/en/variant). What will the result of the message function be in the example below?
 
   ```reason
   type myFirstVariant =
   | Yes
-  | No
-  | PrettyMuch;
+  | PrettyMuch
+  | No;
 
-let areYouCrushingIt = Yes;
+let doYouUnderstandIt = Yes;
+
+let message =
+  switch (doYouUnderstandIt) {
+  | No => "No worries. Ask a mentor for help!"
+  | Yes => "Great! Aren't Variants awesome?"
+  | PrettyMuch => "Nice! Almost there!"
+  };
+
   ```
 ---
-Having a bird cruising on the wind is great but it's time to get some interaction going. When you press Space now, nothing is happening. And if you take a look at the player Variant, it's not difficult to see why. We are just waiting!
+Having a bird cruising on the wind is great but it's time to get some interaction going. When you press Space now, nothing is happening. And if you take a look at the player Variant, it's not difficult to see why. There is just one constructor and it indicates a waiting state.
 
 ```reason
 type player =
@@ -119,7 +127,7 @@ type player =
 
 ### 4. Fly
 
-Now that we know the game started (a space has been pressed), it's time to make the bird fly high in the sky.
+Now that we know the game started (a Space has been pressed), it's time to make the bird respond to our commands!
 
 * Update the bird's `y`-axis position on every draw (when the user is playing) by incrementing its value with `state.acceleration *. deltaTime`
 * Gravity is a thing in the real world. Increment the `acceleration ` on every draw with the `gravity` from the `Physics` module.

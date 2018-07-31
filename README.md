@@ -61,25 +61,59 @@ Reprocessing is able to live reload code while developing, opening up all possib
 
 ### 2. Birth of the bird
 
-The bird seems to hang frozen in the air. Let's bring him alive.
+Let's start by taking a look at our bird.
 The image of the bird gets drawn by the following code:
 ```reason
 Images.drawBird(~x=180., ~y=state.birdY, ~image=state.image, env);
 ```
-* What is the `~` thing? Ask a mentor at the Dojo.
-* Update the relevant part of the state in `draw` to give the bird a different position on the `y`-axis. For example give it a hard-coded position of `150.`
-* Increment the bird position (`y`-axis) on every draw with the `Math.sineWave` function. Hint: part of the named arguments contain default values in the function definition. If you omit them when calling the function the default values are used. You can use the `xOffset` value in the state as `offset`. Don't forget to pass a `()` (unit) as last argument to finish the function application.
 
-Tip: don't be afraid to ask a mentor for help. If you've never worked with named or default arguments before, you'll definitely have a lot of questions.
+* **STEP:** Update the relevant part of the state in `draw` to give the bird a different position on the `y`-axis. For example give it a hard-coded position of `150.`
+
+* **CONCEPT:** Take a look at the example below. Can you guess what `~` does for arguments?
+
+  ```reason
+  let add = (~a, ~b) => a + b;
+  let result = add(~b=2, ~a=4);
+  ```
+
+* **CONCEPT:** Take a look at the example below. What happens if we don't provide `b` as an argument?
+  ```reason
+  let add = (~a, ~b=16) => a + b;
+  let result = add(~a=4);
+  ```
+
+* Right now, the bird is floating aimlessly through the sky, without a care in the world. Let's change that by blowing some wind in its face!  
+To do this, we want to increment the bird's Y-position with the result of our `Math.sineWave` function on every draw.
+
+  Take a look at the `Math.sineWave` definition. You will see it requires several arguments but some of them have default values (see the concept above). These default values will be used if you omit them in the function invocation. So the only arguments we really need to provide is the offset and a `()` (unit) as last argument to finish the function application.
+
+  As offset we can provide the `xOffset` value in the state. 
+
+* **CONCEPT:** Can you guess what the difference is between `18. +. 12.` and `18 + 12`?
+
+**TIP:** Don't be afraid to ask a mentor for help. If you've never worked with named or default arguments before, you'll definitely have a lot of questions.
 
 ### 3. Let's play
+---
+**REASON CONCEPT:** Take a quick look at the documentation about [Variants and Constructors](https://reasonml.github.io/docs/en/variant)
 
-The player seems to be constantly waiting:
+  ```reason
+  type myFirstVariant =
+  | Yes
+  | No
+  | PrettyMuch;
+
+let areYouCrushingIt = Yes;
+  ```
+---
+Having a bird cruising on the wind is great but it's time to get some interaction going. When you press Space now, nothing is happening. And if you take a look at the player Variant, it's not difficult to see why. We are just waiting!
+
 ```reason
 type player =
   | Waiting;
 ```
-* Add an extra constructor that indicates a player is "playing". Note: constructors always start with an uppercased character.
+
+* Add an extra constructor that indicates a player is "Playing". Note: constructors always start with an uppercased character.
 * Modify the switch statement on `state.player`, to pattern match on your new constructor and return the next state.
 * Whenever the user presses a `space` in the `Waiting` state, update the `player.state` to reflect that the game has started. Hint: to check whether a space was pressed you can use `Env.keyPressed(Space, env)`.
 

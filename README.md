@@ -87,14 +87,15 @@ To do this, we want to increment the bird's Y-position with the result of our `M
 
   Take a look at the `Math.sineWave` definition. You will see it requires several arguments but some of them have default values (see the concept above). These default values will be used if you omit them in the function invocation. So the only arguments we really need to provide is the offset and a `()` (unit) as last argument to finish the function application.
 
-  As offset we can provide the `xOffset` value in the state. 
+  As offset we can provide the `xOffset` value from the state.
 
 * **CONCEPT:** Can you guess what the difference is between `18. +. 12.` and `18 + 12`?
 
 **TIP:** Don't be afraid to ask a mentor for help. If you've never worked with named or default arguments before, you'll definitely have a lot of questions.
 
-#### 3. Let's play
-* **CONCEPT:** Take a quick look at the documentation about [Variants and Constructors](https://reasonml.github.io/docs/en/variant). What will the result of the message function be in the example below?
+### 3. Let's play
+
+* **CONCEPT:** Take a quick look at the documentation about [Variants and Constructors](https://reasonml.github.io/docs/en/variant) and [Pattern Matching](https://reasonml.github.io/docs/en/pattern-matching.html). What will the result of the message function be in the example below?
 
     ```reason
     type myFirstVariant =

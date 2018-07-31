@@ -13,6 +13,17 @@ No one ever learned to ride a bicycle, while watching other people bike.
 
 Make sure you have [node](https://nodejs.org/en/) installed.
 
+## Editor setup
+
+* [VSCode](https://github.com/reasonml-editor/vscode-reasonml) **recommended**
+
+* Atom
+```
+apm install language-reason linter linter-refmt reason-refmt
+```
+
+* Others: https://reasonml.github.io/docs/en/editor-plugins#officially-supported-editors
+
 ## Install
 ```
 git clone https://github.com/IwanKaramazow/ReasonDojo.git
@@ -42,9 +53,11 @@ A window with a floating static bird should appear.
 ### 1. Baby steps - Hot reloading
 
 Reprocessing is able to live reload code while developing, opening up all possibilities for a tremendous dev experience. Ever heard of live reloading code in native environments? Me neither, until Reason ;)
+`npm start` (from the previous step) automatically starts the app with hot reloading enabled.
 
-* Open `index.re` and modify `speed` in the `Physics` module.
+* Open `index.re` and modify `speed` in the `Physics` module. (Hint: `float` numbers, always contain a `.`)
 * Experiment with different speeds
+* Reset the speed to `150.`
 
 ### 2. Birth of the bird
 
@@ -53,8 +66,11 @@ The image of the bird gets drawn by the following code:
 ```reason
 Images.drawBird(~x=180., ~y=state.birdY, ~image=state.image, env);
 ```
-* Update the relevant part of the state to give the bird a different position on the `y`-axis. For example give it a hard-coded position of `150.`
+* What is the `~` thing? Ask a mentor at the Dojo.
+* Update the relevant part of the state in `draw` to give the bird a different position on the `y`-axis. For example give it a hard-coded position of `150.`
 * Increment the bird position (`y`-axis) on every draw with the `Math.sineWave` function. Hint: part of the named arguments contain default values in the function definition. If you omit them when calling the function the default values are used. You can use the `xOffset` value in the state as `offset`. Don't forget to pass a `()` (unit) as last argument to finish the function application.
+
+Tip: don't be afraid to ask a mentor for help. If you've never worked with named or default arguments before, you'll definitely have a lot of questions.
 
 ### 3. Let's play
 
@@ -71,7 +87,7 @@ type player =
 
 Now that we know the game started (a space has been pressed), it's time to make the bird fly high in the sky.
 
-* Update the bird's `y`-axis position on every draw (when the user is playing) by incrementing with the `state.acceleration *. deltaTime`
+* Update the bird's `y`-axis position on every draw (when the user is playing) by incrementing its value with `state.acceleration *. deltaTime`
 * Gravity is a thing in the real world. Increment the `acceleration ` on every draw with the `gravity` from the `Physics` module.
 * Whenever the user presses space, the bird needs to fly higher and higher. If a space is pressed, the `acceleration` is equal to the force contained by `jumpAcceleration`  in the `Physics` module.
 

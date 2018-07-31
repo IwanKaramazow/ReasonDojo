@@ -39,7 +39,6 @@ module Images = {
 
   let floorY = 500.;
 
-  let pipeGap = 50.;
   let pipeHeight = 350.;
   let pipeGap = 100.;
   let pipeWidth = 50.;
@@ -155,7 +154,7 @@ let updatePipes = (pipes, offset) =>
     pipes,
   );
 
-let birdHitsPipes = (birdY, xOffset, pipes) =>
+let birdHitsPipes = (birdY, pipes) =>
   List.exists(
     ({x, y}) => {
       let topPipeCrash =
@@ -196,7 +195,7 @@ let draw = (state, env) => {
     state.pipes,
   );
 
-  /* let crash = birdHitsPipes(state.birdY, state.xOffset, state.pipes); */
+  /* let crash = birdHitsPipes(state.birdY, state.pipes); */
 
   /* the time elapsed between two frame updates */
   let deltaTime = Env.deltaTime(env);

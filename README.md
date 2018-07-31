@@ -130,7 +130,7 @@ open `index.html` in a browser, e.g. safari, firefox... (there's a Reprocessing 
 * When the user is playing, use the `updatePipes` function to update the `pipes` state on every draw
 * Uncomment following part of the code in the `draw`  function:
 ```reason
-let crash = birdHitsPipes(state.birdY, state.xOffset, state.pipes);
+let crash = birdHitsPipes(state.birdY, state.pipes);
 ```
 * The `crash` boolean indicates whether a bird hit a pipe. When there's a crash:
   - `state.player` should transition to the same state as when the birth hit the ground

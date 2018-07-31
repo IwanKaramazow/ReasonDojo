@@ -156,14 +156,17 @@ let updatePipes = (pipes, offset) =>
 
 let birdHitsPipes = (birdY, pipes) =>
   List.exists(
-    ({x, y}) => {
-      let topPipeCrash =
-        birdY <= y -. Images.pipeGap && Images.birdX +. 40. >= x;
+    ({x, y}) =>
+      if (Images.birdX +. 30. > x) {
+        false;
+      } else {
+        let topPipeCrash =
+          birdY <= y -. Images.pipeGap && Images.birdX +. 40. >= x;
 
-      let bottomPipeCrash = birdY >= y +. 70. && Images.birdX +. 40. >= x;
+        let bottomPipeCrash = birdY >= y +. 70. && Images.birdX +. 40. >= x;
 
-      topPipeCrash || bottomPipeCrash;
-    },
+        topPipeCrash || bottomPipeCrash;
+      },
     pipes,
   );
 

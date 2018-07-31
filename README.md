@@ -1,12 +1,18 @@
 Reason Dojo - Reprocessing - August 2018 - Ghent
 ---
 
-No one ever learned to ride a bicycle, while watching other people bike.
+No one ever learned to ride a bicycle, while watching other people bike. Hence we Dojo.
+
+## Feedback
+
+We're trying to improve the quality of the Reason Dojo. Don't hesitate to leave us feedback:
+https://goo.gl/forms/nogGPAf9WQGkdgS83
+
 
 ## Need help?
 
 1) Don't be afraid to ask help from a mentor at the Dojo
-2) Join https://discord.gg/V7mUGq, look for the #reason-dojo channel
+2) Join https://discordapp.com/invite/reasonml, look for the #reason-dojo channel
 3) Tweet at https://twitter.com/_iwan_refmt
 
 ## Requirements
@@ -15,11 +21,17 @@ Make sure you have [node](https://nodejs.org/en/) installed.
 
 ## Editor setup
 
+| platform  | install command                          |
+|-----------|------------------------------------------|
+| **macOS** | `npm install -g reason-cli@3.2.0-darwin` |
+| **Linux** | `npm install -g reason-cli@3.2.0-linux`  |
+|**Windows**| Contact a Reason mentor                  |
+
 * [VSCode](https://github.com/reasonml-editor/vscode-reasonml) **recommended**
 
 * Atom
 ```
-apm install language-reason linter linter-refmt reason-refmt
+apm install language-reason linter linter-refmt reason-refmt atom-ocaml-merlin
 ```
 
 * Others: https://reasonml.github.io/docs/en/editor-plugins#officially-supported-editors
@@ -112,15 +124,15 @@ To do this, we want to increment the bird's Y-position with the result of our `M
     | PrettyMuch => "Nice! Almost there!"
     };
     ```
-Having a bird cruising on the wind is great but it's time to get some interaction going. When you press Space now, nothing is happening. And if you take a look at the player Variant, it's not difficult to see why. There is just one constructor and it indicates a waiting state.
+Having a bird cruising on the wind is great but it's time to get some interaction going. When you press Space now, nothing is happening. And if you take a look at the player Variant, it's not difficult to see why. There is just one tag and it indicates a waiting state.
 
 ```reason
 type player =
   | Waiting;
 ```
 
-* Add an extra constructor that indicates a player is "Playing". Note: constructors always start with an uppercased character.
-* Modify the switch statement on `state.player`, to pattern match on your new constructor and return the next state.
+* Add an extra tag (a.k.a. constructor) that indicates a player is "Playing". Note: tags (or constructors) always start with an uppercased character.
+* Modify the switch statement on `state.player`, to pattern match on your new tag/constructor and return the next state.
 * Whenever the user presses a `space` in the `Waiting` state, update the `player.state` to reflect that the game has started. Hint: to check whether a space was pressed you can use `Env.keyPressed(Space, env)`.
 
 ### 4. Fly
@@ -135,7 +147,7 @@ Now that we know the game started (a Space has been pressed), it's time to make 
 
 Amazing, the bird is able to fly through the air whenever the space-key is pressed. Due to weird laws governing the FlappyBird-world, a bird (unfortunately) dies when it hits the ground. It's time to implement ground collision detection.
 
-* Add an extra constructor to the `player`-type indicating the player has lost, because his bird hit the ground.
+* Add an extra tag to the `player`-type indicating the player has lost, because his bird hit the ground.
 * Modify the `hitsFloor` function. It should return `true` whenever the bird hit the floor.
 * Use the `hitsFloor` function to update the `state.player`. (Indicates death of the bird when it hit the ground)
 * Make sure that the bird stays dead on the ground, whenever it hit the ground. (A bird falling through the earth violates certain laws of physics).
@@ -175,3 +187,8 @@ let crash = birdHitsPipes(state.birdY, state.pipes);
 * The `crash` boolean indicates whether a bird hit a pipe. When there's a crash:
   - `state.player` should transition to the same state as when the birth hit the ground
   - the pipes should stop moving, e.g. no need to update them anymore
+
+## Feedback
+
+We're trying to improve the quality of the Reason Dojo. Don't hesitate to leave us feedback:
+https://goo.gl/forms/nogGPAf9WQGkdgS83

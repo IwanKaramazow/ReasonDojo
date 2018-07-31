@@ -95,7 +95,7 @@ To do this, we want to increment the bird's Y-position with the result of our `M
 
 ### 3. Let's play
 
-* **CONCEPT:** Take a quick look at the documentation about [Variants and Constructors](https://reasonml.github.io/docs/en/variant) and [Pattern Matching](https://reasonml.github.io/docs/en/pattern-matching.html). What will the result of the message function be in the example below?
+* **CONCEPT:** Take a quick look at the documentation about [Variants and Constructors](https://reasonml.github.io/docs/en/variant) and [Pattern Matching](https://reasonml.github.io/docs/en/pattern-matching.html). What will the result be of the message function in the example below?
 
     ```reason
     type myFirstVariant =

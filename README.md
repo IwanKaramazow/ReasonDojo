@@ -133,7 +133,7 @@ type player =
 
 * Add an extra tag (a.k.a. constructor) that indicates a player is "Playing". Note: tags (or constructors) always start with an uppercased character.
 * Modify the switch statement on `state.player`, to pattern match on your new tag/constructor and return the next state.
-* Whenever the user presses a `space` in the `Waiting` state, update the `player.state` to reflect that the game has started. Hint: to check whether a space was pressed you can use `Env.keyPressed(Space, env)`.
+* Whenever the user presses a `space` in the `Waiting` state, update the `state.player` to reflect that the game has started. Hint: to check whether a space was pressed you can use `Env.keyPressed(Space, env)`.
 
 ### 4. Fly
 
@@ -185,7 +185,7 @@ open `index.html` in a browser, e.g. safari, firefox... (there's a Reprocessing 
 let crash = birdHitsPipes(state.birdY, state.pipes);
 ```
 * The `crash` boolean indicates whether a bird hit a pipe. When there's a crash:
-  - `state.player` should transition to the same state as when the birth hit the ground
+  - `state.player` should transition to the same state as when the bird hit the ground
   - the pipes should stop moving, e.g. no need to update them anymore
 
 ## Feedback
